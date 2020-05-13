@@ -1,0 +1,37 @@
+@layout('layouts.app')
+
+@section('body')
+    <h1 class="h3 mb-4 text-gray-800">Student List</h1>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>#id</th>
+                <th>Name</th>
+                <th>Mejor</th>
+                <th>CGPA</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <tr>
+                <td>id</td>
+                <td>Name</td>
+                <td>Mejor</td>
+                <td>CGPA</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+@endsection
+
+
+
+@section('scripts')
+<script>
+    $(document).ready( function () {
+        $('#table').DataTable();
+    } );
+</script>
+@endsection

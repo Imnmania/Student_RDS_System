@@ -1,0 +1,204 @@
+@layout('layouts.app')
+
+@section('body')
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                Register a new student
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('students.store') }}">
+                    {{ csrfField() }}
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('username') ? 'is-invalid': '' }}"
+                            placeholder="Username" name="username" value="{{ old('username') }}" />
+                        @if(hasErrorFor('username'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('username') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="password"
+                            class="form-control form-control-user  {{ hasErrorFor('password') ? 'is-invalid': '' }}"
+                            placeholder="Password" name="password" />
+                        @if(hasErrorFor('password'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('password') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('name') ? 'is-invalid': '' }}"
+                            placeholder="Student Name" name="name" />
+                        @if(hasErrorFor('name'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('name') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('father_name') ? 'is-invalid': '' }}"
+                            placeholder="Father Name" name="father_name" />
+                        @if(hasErrorFor('father_name'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('father_name') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('mother_name') ? 'is-invalid': '' }}"
+                            placeholder="Mother Name" name="mother_name" />
+                        @if(hasErrorFor('mother_name'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('mother_name') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('address') ? 'is-invalid': '' }}"
+                            placeholder="Address" name="address" />
+                        @if(hasErrorFor('address'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('address') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('phone_number') ? 'is-invalid': '' }}"
+                            placeholder="Phone Number" name="phone_number" />
+                        @if(hasErrorFor('phone_number'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('phone_number') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('degree') ? 'is-invalid': '' }}"
+                            placeholder="Degree" name="degree" />
+                        @if(hasErrorFor('degree'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('degree') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('status') ? 'is-invalid': '' }}"
+                            placeholder="Status" name="status" />
+                        @if(hasErrorFor('status'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('status') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user  {{ hasErrorFor('credit_passed') ? 'is-invalid': '' }}"
+                            placeholder="Credit Passed" name="credit_passed" />
+                        @if(hasErrorFor('credit_passed'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('credit_passed') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user  {{ hasErrorFor('parent_phone') ? 'is-invalid': '' }}"" placeholder="
+                            Parent Phone Number" name="parent_phone" />
+                        @if(hasErrorFor('parent_phone'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('parent_phone') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="date"
+                            class="form-control form-control-user  {{ hasErrorFor('dob') ? 'is-invalid': '' }}"
+                            placeholder="Date of birth" name="dob" />
+                        @if(hasErrorFor('dob'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('dob') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user  {{ hasErrorFor('sex') ? 'is-invalid': '' }}"
+                            placeholder="Sex" name="sex" />
+                        @if(hasErrorFor('sex'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('sex') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('marital_status') ? 'is-invalid': '' }}"
+                            placeholder="Marital Status" name="marital_status" />
+                        @if(hasErrorFor('marital_status'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('marital_status') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="number"
+                            class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
+                            placeholder="Department Id" name="dept_id" />
+                        @if(hasErrorFor('dept_id'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('dept_id') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="number"
+                            class="form-control form-control-user {{ hasErrorFor('cgpa') ? 'is-invalid': '' }}"
+                            placeholder="CGPA" name="cgpa" />
+                        @if(hasErrorFor('cgpa'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('cgpa') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="text"
+                            class="form-control form-control-user {{ hasErrorFor('major') ? 'is-invalid': '' }}"
+                            placeholder="Major" name="major" />
+                        @if(hasErrorFor('major'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('major') }}
+                        </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input type="email"
+                            class="form-control form-control-user {{ hasErrorFor('email') ? 'is-invalid': '' }}"
+                            placeholder="Email Address" name="email" />
+                        @if(hasErrorFor('email'))
+                        <span class="invalid-feedback">
+                            {{ getErrorFor('email') }}
+                        </span>
+                        @endif
+                    </div>
+
+                    <button class="btn btn-primary btn-user btn-block">
+                        Register Student
+                    </button>
+                    <hr />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection

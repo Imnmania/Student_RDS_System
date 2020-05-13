@@ -21,7 +21,7 @@ class AdminController {
   async createAdmin({ request, response, session }) {
     const numberOfAdmin = await Admin.getCount();
     if (numberOfAdmin >= 1) {
-      return response.redirect("/login");
+      return response.route("dashboard");
     }
 
     const valididation = await validateAll(request.all(), {
@@ -50,6 +50,8 @@ class AdminController {
    * @param {Auth} ctx.auth
    */
   async login({ request, response, session, auth }) {
+    // const isLoggedIn = await auth.check();
+    // if (isLoggedIn) return response.route("dashboard");
     const valididation = await validateAll(
       request.all(),
       {
@@ -68,13 +70,24 @@ class AdminController {
 
     try {
       await auth.attempt(username, password);
+      return response.route("dashboard");
     } catch (error) {
-      console.error(error);
+      session.flash({ error: error.message.split(":")[1] });
       return response.route("admin.login");
     }
-    session.flash({ msg: "You have been logged in successfully!!" });
+  }
 
-    return response.route("dasßhboard");
+  /**
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {Session} ctx.session
+   * @param {Auth} ctx.auth
+   */
+  async logout({ auth, response }) {
+    await auth.logout();
+    return response.route("admin.login");
   }
 }
 
