@@ -1,0 +1,93 @@
+@layout('layouts.app')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="h3 mb-1 text-gray-800">Details of {{student.name}}</h1>
+
+    <div class="card shadow my-4 mx-auto w-40">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Name</b>
+            <span>{{student.name}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Email</b>
+            <span>{{student.email}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Username</b>
+            <span>{{student.username}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Password</b>
+            <span>{{student.password}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Credit Passed</b>
+            <span>{{student.credit_passed}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Father Name</b>
+            <span>{{student.father_name}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Mother Name</b>
+            <span>{{student.mother_name}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Address</b>
+            <span>{{student.address}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Phone Number</b>
+            <span>{{student.phone_number}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Degree</b>
+            <span>{{student.degree}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Status</b>
+            <span>{{student.status}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Credit Passed</b>
+            <span>{{student.credit_passed}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Parent Phone Number</b>
+            <span>{{student.parent_phone}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Date of Birth</b>
+            <span>{{student.dob}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Sex</b>
+            <span>{{student.sex}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Marital Status</b>
+            <span>{{student.marital_status}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Department ID</b>
+            <span>{{student.dept_id}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>CGPA</b>
+            <span>{{student.cgpa}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Major</b>
+            <span>{{student.major}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection

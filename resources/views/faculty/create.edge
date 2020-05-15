@@ -5,10 +5,10 @@
   <div class="col-md-8">
     <div class="card mb-4">
       <div class="card-header">
-        Register a new student
+        Register A New Faculty
       </div>
       <div class="card-body">
-        <form method="POST" action="{{ route('students.store') }}">
+        <form method="POST" action="{{ route('faculty.store') }}">
           {{ csrfField() }}
           <div class="form-group">
             <input type="text" class="form-control form-control-user {{ hasErrorFor('username') ? 'is-invalid': '' }}"
@@ -31,7 +31,7 @@
           </div>
           <div class="form-group">
             <input type="text" class="form-control form-control-user {{ hasErrorFor('name') ? 'is-invalid': '' }}"
-              placeholder="Student Name" name="name" />
+              placeholder="Faculty Name" name="name" />
             @if(hasErrorFor('name'))
             <span class="invalid-feedback">
               {{ getErrorFor('name') }}
@@ -40,24 +40,15 @@
           </div>
           <div class="form-group">
             <input type="text"
-              class="form-control form-control-user {{ hasErrorFor('father_name') ? 'is-invalid': '' }}"
-              placeholder="Father Name" name="father_name" />
-            @if(hasErrorFor('father_name'))
+              class="form-control form-control-user {{ hasErrorFor('guardian_name') ? 'is-invalid': '' }}"
+              placeholder="Guardian Name" name="guardian_name" />
+            @if(hasErrorFor('guardian_name'))
             <span class="invalid-feedback">
-              {{ getErrorFor('father_name') }}
+              {{ getErrorFor('guardian_name') }}
             </span>
             @endif
           </div>
-          <div class="form-group">
-            <input type="text"
-              class="form-control form-control-user {{ hasErrorFor('mother_name') ? 'is-invalid': '' }}"
-              placeholder="Mother Name" name="mother_name" />
-            @if(hasErrorFor('mother_name'))
-            <span class="invalid-feedback">
-              {{ getErrorFor('mother_name') }}
-            </span>
-            @endif
-          </div>
+
           <div class="form-group">
             <input type="text" class="form-control form-control-user {{ hasErrorFor('address') ? 'is-invalid': '' }}"
               placeholder="Address" name="address" />
@@ -78,11 +69,12 @@
             @endif
           </div>
           <div class="form-group">
-            <input type="text" class="form-control form-control-user {{ hasErrorFor('degree') ? 'is-invalid': '' }}"
-              placeholder="Degree" name="degree" />
-            @if(hasErrorFor('degree'))
+            <input type="text"
+              class="form-control form-control-user {{ hasErrorFor('qualification') ? 'is-invalid': '' }}"
+              placeholder="Qualification" name="qualification" />
+            @if(hasErrorFor('qualification'))
             <span class="invalid-feedback">
-              {{ getErrorFor('degree') }}
+              {{ getErrorFor('qualification') }}
             </span>
             @endif
           </div>
@@ -96,45 +88,15 @@
             @endif
           </div>
           <div class="form-group">
-            <input type="text"
-              class="form-control form-control-user  {{ hasErrorFor('credit_passed') ? 'is-invalid': '' }}"
-              placeholder="Credit Passed" name="credit_passed" />
-            @if(hasErrorFor('credit_passed'))
+            <input type="number" class="form-control form-control-user  {{ hasErrorFor('salary') ? 'is-invalid': '' }}"
+              placeholder="Salary" name="salary" />
+            @if(hasErrorFor('salary'))
             <span class="invalid-feedback">
-              {{ getErrorFor('credit_passed') }}
+              {{ getErrorFor('salary') }}
             </span>
             @endif
           </div>
-          <div class="form-group">
-            <input type="text"
-              class="form-control form-control-user  {{ hasErrorFor('parent_phone') ? 'is-invalid': '' }}"
-              placeholder="Parent Phone Number" name="parent_phone" />
-            @if(hasErrorFor('parent_phone'))
-            <span class="invalid-feedback">
-              {{ getErrorFor('parent_phone') }}
-            </span>
-            @endif
-          </div>
-          <div class="form-group">
-            <input type="date" class="form-control form-control-user  {{ hasErrorFor('dob') ? 'is-invalid': '' }}"
-              placeholder="Date of birth" name="dob" />
-            @if(hasErrorFor('dob'))
-            <span class="invalid-feedback">
-              {{ getErrorFor('dob') }}
-            </span>
-            @endif
-          </div>
-          <div class="form-group">
-            <select class="form-control form-control-user {{ hasErrorFor('sex') ? 'is-invalid': '' }}" name="sex">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-            @if(hasErrorFor('sex'))
-            <span class="invalid-feedback">
-              {{ getErrorFor('sex') }}
-            </span>
-            @endif
-          </div>
+
           <div class="form-group">
             <select class="form-control form-control-user {{ hasErrorFor('marital_status') ? 'is-invalid': '' }}"
               name="marital_status">
@@ -157,24 +119,6 @@
             @endif
           </div>
           <div class="form-group">
-            <input type="number" class="form-control form-control-user {{ hasErrorFor('cgpa') ? 'is-invalid': '' }}"
-              placeholder="CGPA" name="cgpa" />
-            @if(hasErrorFor('cgpa'))
-            <span class="invalid-feedback">
-              {{ getErrorFor('cgpa') }}
-            </span>
-            @endif
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control form-control-user {{ hasErrorFor('major') ? 'is-invalid': '' }}"
-              placeholder="Major" name="major" />
-            @if(hasErrorFor('major'))
-            <span class="invalid-feedback">
-              {{ getErrorFor('major') }}
-            </span>
-            @endif
-          </div>
-          <div class="form-group">
             <input type="email" class="form-control form-control-user {{ hasErrorFor('email') ? 'is-invalid': '' }}"
               placeholder="Email Address" name="email" />
             @if(hasErrorFor('email'))
@@ -185,7 +129,7 @@
           </div>
 
           <button class="btn btn-primary btn-user btn-block">
-            Register Student
+            Register Faculty
           </button>
           <hr />
         </form>

@@ -32,6 +32,7 @@ Route.group(() => {
    * ---------------------------------------------------
    */
   Route.resource("students", "StudentController");
+  Route.resource("faculty", "FacultyController");
   Route.post("/logout", "AdminController.logout").as("admin.logout");
 })
   .middleware(["Authenticated"])

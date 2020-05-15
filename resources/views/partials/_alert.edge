@@ -1,20 +1,20 @@
 @if(flashMessage('msg'))
-<div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-    </button>
-    <i class="fa fa-info mx-2"></i>
-    {{{flashMessage('msg')}}}
+<div class="alert alert-success alert-dismissible fade show mb-2 w-75 p-3 mx-auto" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+  <i class="fa fa-info mx-2"></i>
+  {{{flashMessage('msg')}}}
 </div>
 @endif
 
 
 @if(flashMessage('error'))
-<div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-    </button>
-    <i class="fa fa-info mx-2"></i>
-    {{{flashMessage('error')}}}
+<div class="alert alert-danger alert-dismissible fade show mb-2 w-75 p-3 mx-auto" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+  <i class="fa fa-info mx-2"></i>
+  {{{flashMessage('error')}}}
 </div>
 @endif

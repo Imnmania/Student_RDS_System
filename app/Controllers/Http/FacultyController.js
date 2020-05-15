@@ -3,19 +3,17 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-
 const { validateAll } = use("Validator");
 
-/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Student = use("App/Models/Student");
+const Faculty = use("App/Models/Faculty");
 
 /**
- * Resourceful controller for interacting with students
+ * Resourceful controller for interacting with faculties
  */
-class StudentController {
+class FacultyController {
   /**
-   * Show a list of all students.
-   * GET students
+   * Show a list of all faculties.
+   * GET faculties
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -23,13 +21,13 @@ class StudentController {
    * @param {View} ctx.view
    */
   async index({ request, response, view }) {
-    let students = await Student.all();
-    return view.render("students.index", { students });
+    let faculties = await Faculty.all();
+    return view.render("faculty.index", { faculties });
   }
 
   /**
-   * Render a form to be used for creating a new student.
-   * GET students/create
+   * Render a form to be used for creating a new faculty.
+   * GET faculties/create
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -37,12 +35,12 @@ class StudentController {
    * @param {View} ctx.view
    */
   async create({ request, response, view }) {
-    return view.render("students.create");
+    return view.render("faculty.create");
   }
 
   /**
-   * Create/save a new student.
-   * POST students
+   * Create/save a new faculty.
+   * POST faculties
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -50,23 +48,18 @@ class StudentController {
    */
   async store({ request, response, session }) {
     const valididation = await validateAll(request.all(), {
-      email: "required|email|unique:students,email",
-      username: "required|unique:students,username",
+      email: "required|email|unique:faculties,email",
+      username: "required",
       password: "required",
       name: "required",
-      father_name: "required",
-      mother_name: "required",
+      guardian_name: "required",
       address: "required",
       phone_number: "required",
-      degree: "required",
+      qualification: "required",
       status: "required",
-      credit_passed: "required",
-      parent_phone: "required",
-      dob: "required",
-      sex: "required",
+      salary: "required",
       marital_status: "required",
       dept_id: "required",
-      cgpa: "required",
     });
 
     if (valididation.fails()) {
@@ -76,14 +69,14 @@ class StudentController {
     }
 
     delete request.all()._csrf;
-    await Student.create(request.all());
-    session.flash({ msg: "You have been registered successfully!!" });
-    return response.route("students.index");
+    await Faculty.create(request.all());
+    session.flash({ msg: "Faculty has been created." });
+    return response.route("faculty.index");
   }
 
   /**
-   * Display a single student.
-   * GET students/:id
+   * Display a single faculty.
+   * GET faculties/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -91,18 +84,14 @@ class StudentController {
    * @param {View} ctx.view
    */
   async show({ params, request, response, view }) {
-    let student = await Student.find(params.id);
-    const date = new Date(student.dob);
-    const datetoISODate = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
-    student.dob = datetoISODate;
-    return view.render("students.show", { student: student.toJSON() });
+    let faculties = await Faculty.find(params.id);
+
+    return view.render("faculty.show", { faculty: faculties.toJSON() });
   }
 
   /**
-   * Render a form to update an existing student.
-   * GET students/:id/edit
+   * Render a form to update an existing faculty.
+   * GET faculties/:id/edit
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -110,18 +99,13 @@ class StudentController {
    * @param {View} ctx.view
    */
   async edit({ params, request, response, view }) {
-    let student = await Student.find(params.id);
-    const date = new Date(student.dob);
-    const datetoISODate = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
-    student.dob = datetoISODate;
-    return view.render("students.edit", { student: student.toJSON() });
+    let faculties = await Faculty.find(params.id);
+    return view.render("faculty.edit", { faculty: faculties.toJSON() });
   }
 
   /**
-   * Update student details.
-   * PUT or PATCH students/:id
+   * Update faculty details.
+   * PUT or PATCH faculties/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -129,27 +113,23 @@ class StudentController {
    */
   async update({ params, request, response, session }) {
     const valididation = await validateAll(request.all(), {
-      email: "required|email|unique:students,email",
-      username: "required|unique:students,username",
+      email: "required|email",
+      username: "required",
       password: "required",
       name: "required",
-      father_name: "required",
-      mother_name: "required",
+      guardian_name: "required",
       address: "required",
       phone_number: "required",
-      degree: "required",
+      qualification: "required",
       status: "required",
-      credit_passed: "required",
-      parent_phone: "required",
-      dob: "required",
-      sex: "required",
+      salary: "required",
       marital_status: "required",
       dept_id: "required",
-      cgpa: "required",
     });
 
     if (valididation.fails()) {
       session.withErrors(valididation.messages()).flashAll();
+      session.flash({ error: "You have some validation error" });
       return response.redirect("back");
     }
 
@@ -158,26 +138,27 @@ class StudentController {
 
     if (!request.all().password) delete request.all().password; // skip when password is empty
 
-    let student = await Student.find(params.id);
-    student.merge(request.all());
-    await student.save();
-    return response.route("students.index");
+    let faculties = await Faculty.find(params.id);
+    faculties.merge(request.all());
+    await faculties.save();
+    session.flash({ msg: "Faculty have been updated" });
+    return response.route("faculty.index");
   }
 
   /**
-   * Delete a student with id.
-   * DELETE students/:id
+   * Delete a faculty with id.
+   * DELETE faculties/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async destroy({ params, request, response, session }) {
-    let student = await Student.find(params.id);
-    await student.delete();
+    let faculty = await Faculty.find(params.id);
+    await faculty.delete();
     session.flash({ msg: "Successfully deleted!" });
-    return response.route("students.index");
+    return response.route("faculty.index");
   }
 }
 
-module.exports = StudentController;
+module.exports = FacultyController;

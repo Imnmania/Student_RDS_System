@@ -1,0 +1,141 @@
+@layout('layouts.app')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-header">
+        Update A Existing Faculty
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{route('faculty.update',{id:faculty.id})}}?_method=PUT">
+          {{ csrfField() }}
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user {{ hasErrorFor('username') ? 'is-invalid': '' }}"
+              placeholder="Username" name="username" value="{{faculty.username}}" />
+            @if(hasErrorFor('username'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('username') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="password"
+              class="form-control form-control-user  {{ hasErrorFor('password') ? 'is-invalid': '' }}"
+              placeholder="Password" name="password" value="{{faculty.password}}" />
+            @if(hasErrorFor('password'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('password') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user {{ hasErrorFor('name') ? 'is-invalid': '' }}"
+              placeholder="Faculty Name" name="name" value="{{faculty.name}}" />
+            @if(hasErrorFor('name'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('name') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="text"
+              class="form-control form-control-user {{ hasErrorFor('guardian_name') ? 'is-invalid': '' }}"
+              placeholder="Guardian Name" name="guardian_name" value="{{faculty.guardian_name}}" />
+            @if(hasErrorFor('guardian_name'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('guardian_name') }}
+            </span>
+            @endif
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user {{ hasErrorFor('address') ? 'is-invalid': '' }}"
+              placeholder="Address" name="address" value="{{faculty.address}}" />
+            @if(hasErrorFor('address'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('address') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="text"
+              class="form-control form-control-user {{ hasErrorFor('phone_number') ? 'is-invalid': '' }}"
+              placeholder="Phone Number" name="phone_number" value="{{faculty.phone_number}}" />
+            @if(hasErrorFor('phone_number'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('phone_number') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="text"
+              class="form-control form-control-user {{ hasErrorFor('qualification') ? 'is-invalid': '' }}"
+              placeholder="Qualification" name="qualification" value="{{faculty.qualification}}" />
+            @if(hasErrorFor('qualification'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('qualification') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user {{ hasErrorFor('status') ? 'is-invalid': '' }}"
+              placeholder="Status" name="status" value="{{faculty.status}}" />
+            @if(hasErrorFor('status'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('status') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control form-control-user  {{ hasErrorFor('salary') ? 'is-invalid': '' }}"
+              placeholder="Salary" name="salary" value="{{faculty.salary}}" />
+            @if(hasErrorFor('salary'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('salary') }}
+            </span>
+            @endif
+          </div>
+
+          <div class="form-group">
+            <select class="form-control form-control-user {{ hasErrorFor('marital_status') ? 'is-invalid': '' }}"
+              name="marital_status">
+              <option {{faculty.marital_status === 'married' && 'selected'}}value="married">Married</option>
+              <option {{faculty.marital_status === 'unmarried' && 'selected'}}value="unmarried">Unmarried</option>
+            </select>
+            @if(hasErrorFor('marital_status'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('marital_status') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
+              placeholder="Department Id" name="dept_id" value="{{faculty.dept_id}}" />
+            @if(hasErrorFor('dept_id'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('dept_id') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control form-control-user {{ hasErrorFor('email') ? 'is-invalid': '' }}"
+              placeholder="Email Address" name="email" value="{{faculty.email}}" />
+            @if(hasErrorFor('email'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('email') }}
+            </span>
+            @endif
+          </div>
+
+          <button class="btn btn-primary btn-user btn-block">
+            Register Faculty
+          </button>
+          <hr />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection

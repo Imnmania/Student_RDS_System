@@ -1,0 +1,53 @@
+@layout('layouts.app')
+
+@section('body')
+<h1 class="h3 mb-4 text-gray-800">Faculty List</h1>
+
+<table id="table">
+  <thead>
+    <tr>
+      <th>#id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @each(faculty in faculties.toJSON())
+    <tr>
+      <td>{{faculty.id}}</td>
+      <td>{{faculty.name}}</td>
+      <td>{{faculty.email}}</td>
+      <td><a href="{{route('faculty.show',{id:faculty.id})}}" class="btn btn-success btn-sm">View</a>
+        <a href="{{route('faculty.edit',{id:faculty.id})}}" class="btn btn-primary btn-sm">Edit</a>
+        <div class="btn-group btn-group-sm">
+          <form action="{{ route('faculty.destroy' , { id: faculty.id }) }}?_method=DELETE" method="POST"
+            id="delete-faculty-{{ faculty.id }}">
+            {{ csrfField() }}
+
+            <button type="button" class="btn btn-danger btn-sm"
+              onclick="if(confirm('Sure to Delete?')) document.getElementById('delete-faculty-{{ faculty.id }}').submit()">
+              Delete
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    @endeach
+  </tbody>
+
+</table>
+
+
+@endsection
+
+
+
+@section('scripts')
+<script>
+  $(document).ready(function () {
+    $('#table').DataTable();
+  });
+
+</script>
+@endsection

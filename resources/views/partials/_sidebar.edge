@@ -1,32 +1,26 @@
-<ul
-        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-        id="accordionSidebar"
-      >
-        <!-- Sidebar - Brand -->
-        <a
-          class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
-        >
-          <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="sidebar-brand-text mx-3">Admin</div>
-        </a>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <div class="sidebar-brand-icon rotate-n-15">
+      <i class="fas fa-user"></i>
+    </div>
+    <div class="sidebar-brand-text mx-3">Admin</div>
+  </a>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0" />
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0" />
 
 
-        <!-- Divider -->
-        <hr class="sidebar-divider" />
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
 
-        <!-- Heading -->
-        <!-- <div class="sidebar-heading">
+  <!-- Heading -->
+  <!-- <div class="sidebar-heading">
           Addons
         </div>-->
 
-        <!-- Nav Item - Pages Collapse Menu -->
-       <!--  <li class="nav-item">
+  <!-- Nav Item - Pages Collapse Menu -->
+  <!--  <li class="nav-item">
           <a
             class="nav-link collapsed"
             href="#"
@@ -59,36 +53,40 @@
           </div>
         </li>-->
 
-        <!-- Nav Item - Charts -->
-       
-
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
-          >
-            <i class="fas fa-fw fa-users"></i>
-            <span>Students</span>
-          </a>
-          <div
-            id="collapsePages"
-            class="collapse"
-            aria-labelledby="headingPages"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <a class="collapse-item" href="{{ route('students.index') }}">Student List</a>
-              <a class="collapse-item" href="{{ route('students.create') }}">Register Student</a>
-            </div>
-          </div>
-        </li>
+  <!-- Nav Item - Charts -->
 
 
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block" />
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true"
+      aria-controls="collapsePages">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Faculties</span>
+    </a>
+    <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{ route('faculty.index') }}">Faculty List</a>
+        <a class="collapse-item" href="{{ route('faculty.create') }}">Register Faculty</a>
+      </div>
+    </div>
+  </li>
 
-      </ul>
-      <!-- End of Sidebar -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+      aria-controls="collapsePages">
+      <i class="fas fa-fw fa-users"></i>
+      <span>Students</span>
+    </a>
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{ route('students.index') }}">Student List</a>
+        <a class="collapse-item" href="{{ route('students.create') }}">Register Student</a>
+      </div>
+    </div>
+  </li>
+
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block" />
+
+</ul>
+<!-- End of Sidebar -->

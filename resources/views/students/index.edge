@@ -1,27 +1,46 @@
 @layout('layouts.app')
 
 @section('body')
-    <h1 class="h3 mb-4 text-gray-800">Student List</h1>
+<h1 class="h3 mb-4 text-gray-800">Student List</h1>
 
-    <table id="table">
-        <thead>
-            <tr>
-                <th>#id</th>
-                <th>Name</th>
-                <th>Mejor</th>
-                <th>CGPA</th>
-            </tr>
-        </thead>
-        <tbody> 
-            <tr>
-                <td>id</td>
-                <td>Name</td>
-                <td>Mejor</td>
-                <td>CGPA</td>
-            </tr>
-        </tbody>
+<table id="table">
+  <thead>
+    <tr>
+      <th>#id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Major</th>
+      <th>CGPA</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @each(student in students.toJSON())
+    <tr>
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.email}}</td>
+      <td>{{student.major}}</td>
+      <td>{{student.cgpa}}</td>
+      <td><a href="{{route('students.show',{id:student.id})}}" class="btn btn-success btn-sm">View</a>
+        <a href="{{route('students.edit',{id:student.id})}}" class="btn btn-primary btn-sm">Edit</a>
+        <div class="btn-group btn-group-sm">
+          <form action="{{ route('students.destroy' , { id: student.id }) }}?_method=DELETE" method="POST"
+            id="delete-student-{{ student.id }}">
+            {{ csrfField() }}
 
-    </table>
+            <button type="button" class="btn btn-danger btn-sm"
+              onclick="if(confirm('Sure to Delete?')) document.getElementById('delete-student-{{ student.id }}').submit()">
+              Delete
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    @endeach
+  </tbody>
+
+</table>
 
 
 @endsection
@@ -30,8 +49,9 @@
 
 @section('scripts')
 <script>
-    $(document).ready( function () {
-        $('#table').DataTable();
-    } );
+  $(document).ready(function () {
+    $('#table').DataTable();
+  });
+
 </script>
 @endsection
