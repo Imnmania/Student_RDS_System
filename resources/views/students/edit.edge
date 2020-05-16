@@ -8,9 +8,10 @@
         Update A Existing Student
       </div>
       <div class="card-body">
-        <form method="POST" action="{{ route('students.update' , { id: student.id }) }}?_method=PUT">
+        <form method="POST" action="{{route('students.update',{id:student.id})}}?_method=PUT">
           {{ csrfField() }}
           <div class="form-group">
+            <label for="formGroupExampleInput">Username</label>
             <input type="text" class="form-control form-control-user {{ hasErrorFor('username') ? 'is-invalid': '' }}"
               placeholder="Username" name="username" value="{{student.username}}" />
             @if(hasErrorFor('username'))
@@ -20,6 +21,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Password</label>
             <input type="password"
               class="form-control form-control-user  {{ hasErrorFor('password') ? 'is-invalid': '' }}"
               placeholder="Password" name="password" value="{{student.password}}" />
@@ -30,6 +32,17 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Email Address</label>
+            <input type="email" class="form-control form-control-user {{ hasErrorFor('email') ? 'is-invalid': '' }}"
+              placeholder="Email Address" name="email" value="{{student.email}}" />
+            @if(hasErrorFor('email'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('email') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Student Name</label>
             <input type="text" class="form-control form-control-user {{ hasErrorFor('name') ? 'is-invalid': '' }}"
               placeholder="Student Name" name="name" value="{{student.name}}" />
             @if(hasErrorFor('name'))
@@ -39,6 +52,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Father Name</label>
             <input type="text"
               class="form-control form-control-user {{ hasErrorFor('father_name') ? 'is-invalid': '' }}"
               placeholder="Father Name" name="father_name" value="{{student.father_name}}" />
@@ -49,6 +63,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Mother Name</label>
             <input type="text"
               class="form-control form-control-user {{ hasErrorFor('mother_name') ? 'is-invalid': '' }}"
               placeholder="Mother Name" name="mother_name" value="{{student.mother_name}}" />
@@ -59,6 +74,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Address</label>
             <input type="text" class="form-control form-control-user {{ hasErrorFor('address') ? 'is-invalid': '' }}"
               placeholder="Address" name="address" value="{{student.address}}" />
             @if(hasErrorFor('address'))
@@ -68,6 +84,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Phone Number</label>
             <input type="text"
               class="form-control form-control-user {{ hasErrorFor('phone_number') ? 'is-invalid': '' }}"
               placeholder="Phone Number" name="phone_number" value="{{student.phone_number}}" />
@@ -78,6 +95,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Degree</label>
             <input type="text" class="form-control form-control-user {{ hasErrorFor('degree') ? 'is-invalid': '' }}"
               placeholder="Degree" name="degree" value="{{student.degree}}" />
             @if(hasErrorFor('degree'))
@@ -87,6 +105,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Status</label>
             <input type="text" class="form-control form-control-user {{ hasErrorFor('status') ? 'is-invalid': '' }}"
               placeholder="Status" name="status" value="{{student.status}}" />
             @if(hasErrorFor('status'))
@@ -96,6 +115,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Credit Passed</label>
             <input type="text"
               class="form-control form-control-user  {{ hasErrorFor('credit_passed') ? 'is-invalid': '' }}"
               placeholder="Credit Passed" name="credit_passed" value="{{student.credit_passed}}" />
@@ -106,6 +126,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Parent Phone Number</label>
             <input type="text"
               class="form-control form-control-user  {{ hasErrorFor('parent_phone') ? 'is-invalid': '' }}"
               placeholder="Parent Phone Number" name="parent_phone" value="{{student.parent_phone}}" />
@@ -116,6 +137,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Date of Birth</label>
             <input type="date" class="form-control form-control-user  {{ hasErrorFor('dob') ? 'is-invalid': '' }}"
               placeholder="Date of birth" name="dob" value="{{student.dob}}" />
             @if(hasErrorFor('dob'))
@@ -125,6 +147,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Sex</label>
             <select class="form-control form-control-user" name="sex">
               <option {{student.sex === 'male' && 'selected'}} value="male">Male</option>
               <option {{student.sex === 'female' && 'selected'}} value="female">Female</option>
@@ -136,19 +159,26 @@
             @endif
           </div>
           <div class="form-group">
-            <select class="form-control form-control-user" name="sex">
+            <label for="formGroupExampleInput">Marital Status</label>
+            <select class="form-control form-control-user" name="marital_status">
               <option {{student.marital_status === 'married' && 'selected'}} value="married">Married</option>
               <option {{student.marital_status === 'unmarried' && 'selected'}} value="unmarried">Unmarried</option>
             </select>
             @if(hasErrorFor('marital_status'))
             <span class="invalid-feedback">
-              {{ getErrorFor('marital-status') }}
+              {{ getErrorFor('marital_status') }}
             </span>
             @endif
           </div>
           <div class="form-group">
-            <input type="number" class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
-              placeholder="Department Id" name="dept_id" value="{{student.dept_id}}" />
+            <label for="formGroupExampleInput">Department Id</label>
+            <select class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
+              name="dept_id">
+              @each(department in departments)
+              <option {{student.dept_id === department.dept_id && 'selected'}} value="{{department.dept_id}}">
+                {{department.dept_name}}</option>
+              @endeach
+            </select>
             @if(hasErrorFor('dept_id'))
             <span class="invalid-feedback">
               {{ getErrorFor('dept_id') }}
@@ -156,6 +186,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">CGPA</label>
             <input type="number" class="form-control form-control-user {{ hasErrorFor('cgpa') ? 'is-invalid': '' }}"
               placeholder="CGPA" name="cgpa" value="{{student.cgpa}}" />
             @if(hasErrorFor('cgpa'))
@@ -165,6 +196,7 @@
             @endif
           </div>
           <div class="form-group">
+            <label for="formGroupExampleInput">Major</label>
             <input type="text" class="form-control form-control-user {{ hasErrorFor('major') ? 'is-invalid': '' }}"
               placeholder="Major" name="major" value="{{student.major}}" />
             @if(hasErrorFor('major'))
@@ -173,15 +205,7 @@
             </span>
             @endif
           </div>
-          <div class="form-group">
-            <input type="email" class="form-control form-control-user {{ hasErrorFor('email') ? 'is-invalid': '' }}"
-              placeholder="Email Address" name="email" value="{{student.email}}" />
-            @if(hasErrorFor('email'))
-            <span class="invalid-feedback">
-              {{ getErrorFor('email') }}
-            </span>
-            @endif
-          </div>
+
 
           <button class="btn btn-primary btn-user btn-block">
             Update

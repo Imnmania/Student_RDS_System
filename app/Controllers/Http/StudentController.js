@@ -8,6 +8,7 @@ const { validateAll } = use("Validator");
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Student = use("App/Models/Student");
+const Department = use("App/Models/Department");
 
 /**
  * Resourceful controller for interacting with students
@@ -37,7 +38,8 @@ class StudentController {
    * @param {View} ctx.view
    */
   async create({ request, response, view }) {
-    return view.render("students.create");
+    const departments = await Department.all();
+    return view.render("students.create", { departments });
   }
 
   /**
@@ -111,12 +113,16 @@ class StudentController {
    */
   async edit({ params, request, response, view }) {
     let student = await Student.find(params.id);
-    const date = new Date(student.dob);
-    const datetoISODate = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
+    const departments = await Department.all();
+    const date = new Date(student.dob).toISOString();
+    const datetoISODate = date.split("T")[0];
+
     student.dob = datetoISODate;
-    return view.render("students.edit", { student: student.toJSON() });
+
+    return view.render("students.edit", {
+      student: student.toJSON(),
+      departments: departments.toJSON(),
+    });
   }
 
   /**
@@ -129,8 +135,8 @@ class StudentController {
    */
   async update({ params, request, response, session }) {
     const valididation = await validateAll(request.all(), {
-      email: "required|email|unique:students,email",
-      username: "required|unique:students,username",
+      email: `required|email|unique:students,email,id,${params.id}`,
+      username: `required|unique:students,username,id,${params.id}`,
       password: "required",
       name: "required",
       father_name: "required",
@@ -150,6 +156,7 @@ class StudentController {
 
     if (valididation.fails()) {
       session.withErrors(valididation.messages()).flashAll();
+      console.log(valididation.messages());
       return response.redirect("back");
     }
 

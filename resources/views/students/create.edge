@@ -148,8 +148,13 @@
             @endif
           </div>
           <div class="form-group">
-            <input type="number" class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
-              placeholder="Department Id" name="dept_id" />
+            <label for="formGroupExampleInput">Department Id</label>
+            <select class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
+              name="dept_id">
+              @each(department in departments.toJSON())
+              <option value="{{department.dept_id}}">{{department.dept_name}}</option>
+              @endeach
+            </select>
             @if(hasErrorFor('dept_id'))
             <span class="invalid-feedback">
               {{ getErrorFor('dept_id') }}

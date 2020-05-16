@@ -6,6 +6,7 @@
 const { validateAll } = use("Validator");
 
 const Faculty = use("App/Models/Faculty");
+const Department = use("App/Models/Department");
 
 /**
  * Resourceful controller for interacting with faculties
@@ -35,7 +36,8 @@ class FacultyController {
    * @param {View} ctx.view
    */
   async create({ request, response, view }) {
-    return view.render("faculty.create");
+    const departments = await Department.all();
+    return view.render("faculty.create", { departments });
   }
 
   /**
@@ -49,13 +51,16 @@ class FacultyController {
   async store({ request, response, session }) {
     const valididation = await validateAll(request.all(), {
       email: "required|email|unique:faculties,email",
-      username: "required",
+      username: "required|unique:faculties,username",
       password: "required",
       name: "required",
       guardian_name: "required",
       address: "required",
       phone_number: "required",
       qualification: "required",
+      sex: "required",
+      dob: "required",
+      doj: "required",
       status: "required",
       salary: "required",
       marital_status: "required",
@@ -100,7 +105,20 @@ class FacultyController {
    */
   async edit({ params, request, response, view }) {
     let faculties = await Faculty.find(params.id);
-    return view.render("faculty.edit", { faculty: faculties.toJSON() });
+    const departments = await Department.all();
+    const date1 = new Date(faculties.dob).toISOString();
+    const date1toISODate = date1.split("T")[0];
+
+    faculties.dob = date1toISODate;
+    const date2 = new Date(faculties.doj).toISOString();
+    const date2toISODate = date2.split("T")[0];
+
+    faculties.doj = date2toISODate;
+
+    return view.render("faculty.edit", {
+      faculty: faculties.toJSON(),
+      departments: departments.toJSON(),
+    });
   }
 
   /**
@@ -113,14 +131,17 @@ class FacultyController {
    */
   async update({ params, request, response, session }) {
     const valididation = await validateAll(request.all(), {
-      email: "required|email",
-      username: "required",
+      email: `required|email|unique:faculties,email,id,${params.id}`,
+      username: `required|unique:faculties,username,id,${params.id}`,
       password: "required",
       name: "required",
       guardian_name: "required",
       address: "required",
       phone_number: "required",
       qualification: "required",
+      sex: "required",
+      dob: "required",
+      doj: "required",
       status: "required",
       salary: "required",
       marital_status: "required",

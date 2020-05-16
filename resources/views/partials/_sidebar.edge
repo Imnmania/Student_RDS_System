@@ -64,7 +64,7 @@
     </a>
     <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{ route('faculty.index') }}">Faculty List</a>
+        <a class="collapse-item" href="{{ route('faculty.index') }}">Faculty Lists</a>
         <a class="collapse-item" href="{{ route('faculty.create') }}">Register Faculty</a>
       </div>
     </div>
@@ -78,8 +78,36 @@
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{ route('students.index') }}">Student List</a>
+        <a class="collapse-item" href="{{ route('students.index') }}">Student Lists</a>
         <a class="collapse-item" href="{{ route('students.create') }}">Register Student</a>
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true"
+      aria-controls="collapsePages">
+      <i class="fas  fa-book"></i>
+      <span>Courses</span>
+    </a>
+    <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{ route('course.index') }}">Course Lists</a>
+        <a class="collapse-item" href="{{ route('course.create') }}">Register Course</a>
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="true"
+      aria-controls="collapsePages">
+      <i class="fas  fa-building"></i>
+      <span>Departments</span>
+    </a>
+    <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{ route('department.index') }}">Department Lists</a>
+        <a class="collapse-item" href="{{ route('department.create') }}">Register Department</a>
       </div>
     </div>
   </li>

@@ -20,11 +20,11 @@ class StudentSchema extends Schema {
       table.string("parent_phone", 250).notNullable();
       table.date("dob", 250).notNullable();
       table.string("sex", 250).notNullable();
-      table.string("marital-status", 250).notNullable();
+      table.string("marital_status", 250).notNullable();
       table.integer("dept_id", 250).notNullable();
       table.float("cgpa", 250).notNullable();
       table.string("major", 250).notNullable();
-      table.string("email", 250).notNullable();
+      table.string("email", 250).notNullable().unique();
 
       table.timestamps();
     });

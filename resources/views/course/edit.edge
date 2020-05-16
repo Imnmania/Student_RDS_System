@@ -1,0 +1,66 @@
+@layout('layouts.app')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-header">
+        Update A Existing Course
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{route('course.update',{id:course.id})}}?_method=PUT">
+          {{ csrfField() }}
+          <div class="form-group">
+            <label for="formGroupExampleInput">Course ID</label>
+            <input type="text" class="form-control form-control-user {{ hasErrorFor('course_id') ? 'is-invalid': '' }}"
+              placeholder="Course Id" name="course_id" value="{{course.course_id}}" />
+            @if(hasErrorFor('course_id'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('course_id') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Course Name</label>
+            <input type="text"
+              class="form-control form-control-user  {{ hasErrorFor('course_name') ? 'is-invalid': '' }}"
+              placeholder="Course Name" name="course_name" value="{{course.course_name}}" />
+            @if(hasErrorFor('course_name'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('course_name') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Department ID</label>
+            <input type="number" class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
+              placeholder="Department Id" name="dept_id" value="{{course.dept_id}}" />
+            @if(hasErrorFor('dept-id'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('dept_id') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Credit Hour</label>
+            <input type="number"
+              class="form-control form-control-user {{ hasErrorFor('credit_hr') ? 'is-invalid': '' }}"
+              placeholder="Credit Hour" name="credit_hr" value="{{course.credit_hr}}" />
+            @if(hasErrorFor('credit_hr'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('credit_hr') }}
+            </span>
+            @endif
+          </div>
+
+          <button class="btn btn-primary btn-user btn-block">
+            Update Course
+          </button>
+          <hr />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection

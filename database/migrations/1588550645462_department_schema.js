@@ -6,7 +6,8 @@ const Schema = use("Schema");
 class DepartmentSchema extends Schema {
   up() {
     this.create("departments", (table) => {
-      table.increments("dept_id");
+      table.increments();
+      table.integer("dept_id", 250).notNullable().unique();
       table.string("dept_name", 250).notNullable().unique();
       table.timestamps();
     });

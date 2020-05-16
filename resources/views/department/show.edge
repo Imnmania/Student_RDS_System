@@ -1,0 +1,25 @@
+@layout('layouts.app')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="h3 mb-1 text-gray-800">Details of {{department.dept_name}}</h1>
+
+    <div class="card shadow my-4 mx-auto w-40">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Department Id</b>
+            <span>{{department.dept_id}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Department Name</b>
+            <span>{{department.dept_name}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection
