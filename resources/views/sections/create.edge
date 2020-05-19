@@ -1,0 +1,75 @@
+@layout('layouts.app')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-header">
+        Assign a new section
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ route('sections.store' , { offeredCourseId: offeredCourseId }) }}">
+          {{ csrfField() }}
+
+          <input type="hidden" name="offered_course_id" value="{{ offeredCourseId }}">
+
+
+          <div class="form-group">
+            <label for="formGroupExampleInput">Select faculty</label>
+            <select class="form-control form-control-user {{ hasErrorFor('faculty_id') ? 'is-invalid': '' }}"
+              name="faculty_id">
+              @each(faculty in faculties)
+              <option value="{{faculty.id}}">{{faculty.username}}</option>
+              @endeach
+            </select>
+            @if(hasErrorFor('faculty_id'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('faculty_id') }}
+            </span>
+            @endif
+          </div>
+
+
+
+          <div class="form-group">
+            <label for="formGroupExampleInput">Section Name</label>
+            <input type="text" class="form-control form-control-user  {{ hasErrorFor('name') ? 'is-invalid': '' }}"
+              placeholder="Section Name" name="name" />
+            @if(hasErrorFor('name'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('name') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Room No.</label>
+            <input type="text" class="form-control form-control-user  {{ hasErrorFor('room_no') ? 'is-invalid': '' }}"
+              placeholder="Room No." name="room_no" />
+            @if(hasErrorFor('room_no'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('room_no') }}
+            </span>
+            @endif
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Time</label>
+            <input type="text" class="form-control form-control-user  {{ hasErrorFor('time') ? 'is-invalid': '' }}"
+              placeholder="Time" name="time" />
+            @if(hasErrorFor('time'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('time') }}
+            </span>
+            @endif
+          </div>
+
+          <button class="btn btn-primary btn-user btn-block">
+            Add section
+          </button>
+          <hr />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection

@@ -106,14 +106,6 @@ class FacultyController {
   async edit({ params, request, response, view }) {
     let faculties = await Faculty.find(params.id);
     const departments = await Department.all();
-    const date1 = new Date(faculties.dob).toISOString();
-    const date1toISODate = date1.split("T")[0];
-
-    faculties.dob = date1toISODate;
-    const date2 = new Date(faculties.doj).toISOString();
-    const date2toISODate = date2.split("T")[0];
-
-    faculties.doj = date2toISODate;
 
     return view.render("faculty.edit", {
       faculty: faculties.toJSON(),

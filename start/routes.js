@@ -18,10 +18,34 @@ const Route = use("Route");
 
 Route.get("/", ({ response }) => response.route("dashboard"));
 
-Route.on("/register").render("auth.sign_up").as("admin.register");
-Route.on("/login").render("auth.login").as("admin.login").middleware(["Guest"]);
-Route.post("/register", "AdminController.createAdmin").as("admin.register");
-Route.post("/login", "AdminController.login").as("admin.login");
+/**
+ * Admin Login
+ */
+
+Route.on("/admin/register").render("auth.sign_up").as("admin.register");
+Route.post("/admin/register", "AdminController.createAdmin").as(
+  "admin.register"
+);
+Route.on("/admin/login")
+  .render("auth.login")
+  .as("admin.login")
+  .middleware(["Guest"]);
+Route.post("/admin/login", "AdminController.login").as("admin.login");
+
+/**
+ * Student login
+ */
+Route.on("/student/login").render("student.login").as("student.login");
+Route.post("/student/login", "StudentController.login")
+  .as("student.login")
+  .middleware("StudentGuest");
+Route.post("/student/logout", "StudentController.logout").as("student.logout");
+Route.group(() => {
+  Route.on("/").render("student.dashboard").as("student.dashboard");
+  Route.on("/profile").render("student.profile").as("student.profile");
+})
+  .prefix("student")
+  .middleware(["auth:student", "StudentAuthenticated"]);
 
 Route.group(() => {
   Route.on("/").render("dashboard").as("dashboard");
@@ -35,7 +59,14 @@ Route.group(() => {
   Route.resource("faculty", "FacultyController");
   Route.resource("course", "CourseController");
   Route.resource("department", "DepartmentController");
+  Route.resource("offeredCourse", "OfferedCourseController");
   Route.post("/logout", "AdminController.logout").as("admin.logout");
 })
   .middleware(["Authenticated"])
   .prefix("admin");
+
+Route.group(() => {
+  Route.resource("sections", "SectionController");
+})
+  .middleware(["Authenticated"])
+  .prefix("admin/offeredCourse/:offeredCourseId");

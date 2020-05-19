@@ -3,6 +3,7 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
+/** @typedef {import('@adonisjs/auth/src/Schemes/Session')} Auth */
 
 const { validateAll } = use("Validator");
 
@@ -79,7 +80,11 @@ class StudentController {
 
     delete request.all()._csrf;
     await Student.create(request.all());
-    session.flash({ msg: "You have been registered successfully!!" });
+    session.flash({
+      msg: `Student registered successfully for username: ${
+        request.all().username
+      } and password: ${request.all().password}`,
+    });
     return response.route("students.index");
   }
 
@@ -168,6 +173,11 @@ class StudentController {
     let student = await Student.find(params.id);
     student.merge(request.all());
     await student.save();
+    session.flash({
+      msg: `Student registered successfully for username: ${
+        request.all().username
+      } and password: ${request.all().password}`,
+    });
     return response.route("students.index");
   }
 
@@ -184,6 +194,56 @@ class StudentController {
     await student.delete();
     session.flash({ msg: "Successfully deleted!" });
     return response.route("students.index");
+  }
+
+  /**
+   * Delete a student with id.
+   * DELETE students/:id
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {auth} crx.auth
+   */
+  async login({ request, response, session, auth }) {
+    const valididation = await validateAll(
+      request.all(),
+      {
+        username: "required",
+        password: "required",
+      },
+      {
+        required: "{{field}} is required",
+      }
+    );
+    if (valididation.fails()) {
+      session.withErrors(valididation.messages()).flashAll();
+      return response.route("student.login");
+    }
+    const { username, password } = request.all();
+
+    try {
+      const studentAuthenticator = auth.authenticator("student");
+      await studentAuthenticator.attempt(username, password);
+      return response.route("student.dashboard");
+    } catch (error) {
+      console.log(error);
+      session.flash({ error: error.message.split(":")[1] });
+      return response.route("student.login");
+    }
+  }
+
+  /**
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {Session} ctx.session
+   * @param {Auth} ctx.auth
+   */
+  async logout({ auth, response }) {
+    await auth.logout();
+    return response.route("student.login");
   }
 }
 

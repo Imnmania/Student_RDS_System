@@ -4,7 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-class Authenticated {
+class StudentAuthenticated {
   /**
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -15,10 +15,10 @@ class Authenticated {
       await auth.check();
     } catch (error) {
       // session.put('redirect_to', request.url())
-      response.route("admin.login");
+      response.route("student.login");
     }
     await next();
   }
 }
 
-module.exports = Authenticated;
+module.exports = StudentAuthenticated;

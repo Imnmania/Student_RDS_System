@@ -1,6 +1,8 @@
 const { hooks } = require("@adonisjs/ignitor");
 
 const moment = require("moment");
+// const Admin = use("App/Models/Admin");
+// const Student = use("App/Models/Student");
 
 hooks.after.providersBooted(async () => {
   /** @type {typeof import('@adonisjs/framework/src/View')} View */
@@ -32,5 +34,12 @@ hooks.after.providersBooted(async () => {
   let date = new Date();
   View.global("date", date);
 
-  View.global("sidebarNav", [{}]);
+  // function isAdminLoggedIn() {
+  //   return auth.user instanceof Admin;
+  // }
+  // function isStudentLoggedIn() {
+  //   return auth.user instanceof Student;
+  // }
+  // View.global("isAdminLoggedIn", isAdminLoggedIn);
+  // View.global("isStudentLoggedIn", isStudentLoggedIn);
 });

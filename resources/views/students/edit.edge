@@ -24,7 +24,7 @@
             <label for="formGroupExampleInput">Password</label>
             <input type="password"
               class="form-control form-control-user  {{ hasErrorFor('password') ? 'is-invalid': '' }}"
-              placeholder="Password" name="password" value="{{student.password}}" />
+              placeholder="Password" name="password" value="" />
             @if(hasErrorFor('password'))
             <span class="invalid-feedback">
               {{ getErrorFor('password') }}

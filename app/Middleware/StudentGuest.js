@@ -3,7 +3,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-class Guest {
+class StudentGuest {
   /**
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -13,17 +13,20 @@ class Guest {
     let isAuthenticated = true;
 
     try {
-      await auth.check();
+      const StudentAuthenticator = auth.authenticator("student");
+      await StudentAuthenticator.getUser();
+      console.log("checked");
     } catch (error) {
       isAuthenticated = false;
+      console.log(error);
     }
 
     if (isAuthenticated) {
-      return response.route("dashboard");
+      return response.route("student.dashboard");
     }
 
     await next();
   }
 }
 
-module.exports = Guest;
+module.exports = StudentGuest;

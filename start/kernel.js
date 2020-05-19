@@ -42,6 +42,8 @@ const namedMiddleware = {
   guest: "Adonis/Middleware/AllowGuestOnly",
   Authenticated: "App/Middleware/Authenticated",
   Guest: "App/Middleware/Guest",
+  StudentAuthenticated: "App/Middleware/StudentAuthenticated",
+  StudentGuest: "App/Middleware/StudentGuest",
 };
 
 /*

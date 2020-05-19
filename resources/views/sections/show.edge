@@ -1,0 +1,30 @@
+@layout('layouts.app')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="h3 mb-1 text-gray-800">Details of {{course.course_id}}</h1>
+
+    <div class="card shadow my-4 mx-auto w-40">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Course Id</b>
+            <span>{{course.course_id}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Semester</b>
+            <span>{{course.semester}}</span>
+          </li>
+        </ul>
+      </div>
+      <a clang="btn btn-primary btn-sm" href="{{route('sections.create' , { offeredCourseId: course.id })}}">Assign
+        newgn
+        new
+        Section</a>new Section</a>
+
+    </div>
+  </div>
+</div>
+
+@endsection
