@@ -1,0 +1,47 @@
+@layout('layouts.studentapp')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <div class="card mb-4">
+      <div class="card-header">
+        Enroll a Course
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ route('enroll.store') }}">
+          {{ csrfField() }}
+
+          <div class="form-group">
+            <label for="formGroupExampleInput">Department Id</label>
+            <input type="number" class="form-control form-control-user {{ hasErrorFor('dept_id') ? 'is-invalid': '' }}"
+              placeholder="Department Id" name="dept_id" />
+            @if(hasErrorFor('dept_id'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('dept_id') }}
+            </span>
+            @endif
+          </div>
+
+          <div class="form-group">
+            <label for="formGroupExampleInput">Department Name</label>
+            <input type="text" class="form-control form-control-user  {{ hasErrorFor('dept_name') ? 'is-invalid': '' }}"
+              placeholder="Department Name" name="dept_name" />
+            @if(hasErrorFor('dept_name'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('dept_name') }}
+            </span>
+            @endif
+          </div>
+
+
+          <button class="btn btn-primary btn-user btn-block">
+            Add Course
+          </button>
+          <hr />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection

@@ -227,7 +227,6 @@ class StudentController {
       await studentAuthenticator.attempt(username, password);
       return response.route("student.dashboard");
     } catch (error) {
-      console.log(error);
       session.flash({ error: error.message.split(":")[1] });
       return response.route("student.login");
     }

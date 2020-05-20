@@ -10,6 +10,8 @@ hooks.after.providersBooted(async () => {
 
   const md5 = require("md5");
   View.global("getAvater", (email) => {
+    if (!email) return undefined;
+
     const $mail = email.toLowerCase();
     return `https://www.gravatar.com/avatar/${md5($mail)}?s=300&d=mm`;
   });

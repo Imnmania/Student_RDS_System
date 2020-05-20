@@ -18,8 +18,8 @@
       <td>{{department.id}}</td>
       <td>{{department.dept_name}}</td>
       <td>{{department.dept_id}}</td>
-      <td><a href="{{route('department.show',{id:department.id})}}" class="btn btn-success btn-sm">View</a>
-        <a href="{{route('department.edit',{id:department.id})}}" class="btn btn-primary btn-sm">Edit</a>
+      <td><a href="{{route('department.show',{ id:department.id})}}" class="btn btn-success btn-sm">View</a>
+        <a href="{{route('department.edit' , { id:department.id})}}" class="btn btn-primary btn-sm">Edit</a>
         <div class="btn-group btn-group-sm">
           <form action="{{ route('department.destroy' , { id: department.id }) }}?_method=DELETE" method="POST"
             id="delete-department-{{ department.id }}">

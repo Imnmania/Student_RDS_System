@@ -40,9 +40,11 @@ Route.post("/student/login", "StudentController.login")
   .as("student.login")
   .middleware("StudentGuest");
 Route.post("/student/logout", "StudentController.logout").as("student.logout");
+
 Route.group(() => {
   Route.on("/").render("student.dashboard").as("student.dashboard");
   Route.on("/profile").render("student.profile").as("student.profile");
+  Route.resource("enroll", "CourseEnrollController");
 })
   .prefix("student")
   .middleware(["auth:student", "StudentAuthenticated"]);

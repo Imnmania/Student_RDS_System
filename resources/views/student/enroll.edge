@@ -1,0 +1,17 @@
+@layout('layouts.studentapp')
+
+@section('body')
+<div class="card">
+  <div class="card-body">
+    <h1>Enroll courses </h1>
+
+    @each(section in sections)
+    <h1>Name: {{section.name}}</h1>
+    <h1>course: {{section.course}}</h1>
+    <hr>
+    @endeach
+
+
+  </div>
+</div>
+@endsection

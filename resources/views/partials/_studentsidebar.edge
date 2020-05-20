@@ -14,6 +14,17 @@
   <!-- Divider -->
   <hr class="sidebar-divider" />
 
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('student.profile') }}">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>My profile</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('enroll.index') }}">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>Enroll Courses</span></a>
+  </li>
+
   <!-- Heading -->
   <!-- <div class="sidebar-heading">
             Addons
@@ -57,21 +68,6 @@
 
 
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true"
-      aria-controls="collapsePages">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Students</span>
-    </a>
-    <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{ route('student.profile') }}">Profile</a>
-        {{-- 
-             <a class="collapse-item" href="{{ route('faculty.create') }}">Register Faculty</a>
-        --}}
-      </div>
-    </div>
-  </li>
   {{--  
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"

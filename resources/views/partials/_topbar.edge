@@ -34,12 +34,10 @@
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth.user.username }}</span>
+        <img class="img-profile rounded-circle" src="{{ getAvater(auth.user.username) }}" alt="user-photo">
       </a>
 
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-
-
-
         <form action="{{ route('admin.logout') }}" method="POST">
           {{ csrfField() }}
           <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
