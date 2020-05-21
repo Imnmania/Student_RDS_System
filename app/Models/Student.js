@@ -7,11 +7,10 @@ const Model = use("Model");
 
 class Student extends Model {
   courses() {
-    return this.belongsToMany(
-      "App/Models/OfferedCourse",
-      "student_id",
-      "offered_course_id"
-    ).pivotTable("strudent_enrolled_courses");
+    return this.belongsToMany("App/Models/Section");
+  }
+  grades() {
+    return this.hasMany("App/Models/Grade");
   }
 
   static boot() {

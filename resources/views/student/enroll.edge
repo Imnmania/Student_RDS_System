@@ -2,14 +2,49 @@
 
 @section('body')
 <div class="card">
-  <div class="card-body">
-    <h1>Enroll courses </h1>
 
-    @each(section in sections)
+  <div class="card-header">
+    Enroll a Course
+  </div>
+  <div class="card-body">
+
+
+
+
+    <form method="POST" action="{{ route('enroll.store') }}">
+      {{ csrfField() }}
+
+
+      <div class="form-group">
+        <label for="formGroupExampleInput">Offered Course</label>
+        <select multiple class="form-control form-control-user {{ hasErrorFor('course_id') ? 'is-invalid': '' }}"
+          name="sections">
+          @each(section in sections)
+          <option value="{{section.id}}">{{section.course.course_id}} {{"Sec:"}} {{section.name}}</option>
+          @endeach
+        </select>
+        @if(hasErrorFor('course_id'))
+        <span class="invalid-feedback">
+          {{ getErrorFor('course_id') }}
+        </span>
+        @endif
+      </div>
+      <button class="btn btn-primary btn-user btn-block">
+        Add Course
+      </button>
+      <hr />
+    </form>
+
+
+
+
+    {{--  
+      @each(section in sections)
     <h1>Name: {{section.name}}</h1>
-    <h1>course: {{section.course}}</h1>
+    <h1>course: {{section.course.course_id}}</h1>
     <hr>
     @endeach
+    --}}
 
 
   </div>

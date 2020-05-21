@@ -1,0 +1,78 @@
+@layout('layouts.facultyapp')
+
+@section('body')
+<h1 class="h3 mb-4 text-gray-800">Student List</h1>
+<form method="POST" action="{{ route('assigngrade.store', {section_id: section_id}) }}">
+  {{ csrfField() }}
+  <table id="table">
+    <thead>
+      <tr>
+        <th>#id</th>
+        <th>Name</th>
+        <th>Grade</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      @each(student in students)
+      <tr>
+        <td> {{student.id}} </td>
+        <input type="text" name="student[{{$loop.index}}].student_id" value="{{student.id}}" style="display:none">
+        <td> {{student.name}}</td>
+        <td>
+          <div class="form-group">
+            <select class="form-control form-control-user" name="student[{{$loop.index}}].grade">
+              <option selected></option>
+              <option value="4.00">A 4.00</option>
+              <option value="3.70">A- 3.70</option>
+              <option value="3.30">B+ 3.30</option>
+              <option value="3.00">B 3.00</option>
+              <option value="2.70">B- 2.70</option>
+              <option value="2.30">C+ 2.30</option>
+              <option value="2.00">C 2.00</option>
+              <option value="1.70">C- 1.70</option>
+              <option value="1.30">D+ 1.30</option>
+              <option value="1.00">D 1.00</option>
+              <option value="0.00">F 0.00</option>
+            </select>
+
+          </div>
+        </td>
+        {{--  
+            <td>{{student.major}}</td>
+        <td><a href="{{route('students.show',{id:student.id})}}" class="btn btn-success btn-sm">View</a>
+          <a href="{{route('students.edit',{id:student.id})}}" class="btn btn-primary btn-sm">Edit</a>
+          <div class="btn-group btn-group-sm">
+            <form action="{{ route('students.destroy' , { id: student.id }) }}?_method=DELETE" method="POST"
+              id="delete-student-{{ student.id }}">
+              {{ csrfField() }}
+
+              <button type="button" class="btn btn-danger btn-sm"
+                onclick="if(confirm('Sure to Delete?')) document.getElementById('delete-student-{{ student.id }}').submit()">
+                Delete
+              </button>
+            </form>
+          </div>
+        </td>
+        --}}
+      </tr>
+      @endeach
+    </tbody>
+
+  </table>
+  <button class="btn btn-success btn-sm mx-auto mt-5 d-block">Submit Grade</button>
+</form>
+
+
+@endsection
+
+
+
+@section('scripts')
+<script>
+  $(document).ready(function () {
+    $('#table').DataTable();
+  });
+
+</script>
+@endsection

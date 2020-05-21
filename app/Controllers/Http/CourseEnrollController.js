@@ -20,7 +20,9 @@ class CourseEnrollController {
    * @param {View} ctx.view
    */
   async index({ request, response, view }) {
-    let sections = await Section.query().with("course").fetch();
+    let sections = await Section.query().with("course").with("faculty").fetch();
+
+    //return sections;
 
     return view.render("student.enroll", { sections: sections.toJSON() });
   }
@@ -44,7 +46,13 @@ class CourseEnrollController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {}
+  async store({ request, response, auth }) {
+    await auth.user.courses().attach(request.all().sections);
+
+    return response.route("mycourses");
+    // const
+    //return request.all();
+  }
 
   /**
    * Display a single courseenroll.
@@ -87,6 +95,17 @@ class CourseEnrollController {
    * @param {Response} ctx.response
    */
   async destroy({ params, request, response }) {}
+
+  async enrolledCourses({ auth, view }) {
+    const courses = await auth.user
+      .courses()
+      .with("faculty")
+      .with("course")
+      .fetch();
+
+    //return courses;
+    return view.render("student.mycourses", { courses: courses.toJSON() });
+  }
 }
 
 module.exports = CourseEnrollController;

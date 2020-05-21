@@ -75,7 +75,11 @@ class FacultyController {
 
     delete request.all()._csrf;
     await Faculty.create(request.all());
-    session.flash({ msg: "Faculty has been created." });
+    session.flash({
+      msg: `Faculty registered successfully for username: ${
+        request.all().username
+      } and password: ${request.all().password}`,
+    });
     return response.route("faculty.index");
   }
 
@@ -154,7 +158,11 @@ class FacultyController {
     let faculties = await Faculty.find(params.id);
     faculties.merge(request.all());
     await faculties.save();
-    session.flash({ msg: "Faculty have been updated" });
+    session.flash({
+      msg: `Faculty registered successfully for username: ${
+        request.all().username
+      } and password: ${request.all().password}`,
+    });
     return response.route("faculty.index");
   }
 
@@ -171,6 +179,61 @@ class FacultyController {
     await faculty.delete();
     session.flash({ msg: "Successfully deleted!" });
     return response.route("faculty.index");
+  }
+
+  /**
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {auth} crx.auth
+   */
+  async login({ request, response, session, auth }) {
+    const valididation = await validateAll(
+      request.all(),
+      {
+        username: "required",
+        password: "required",
+      },
+      {
+        required: "{{field}} is required",
+      }
+    );
+    if (valididation.fails()) {
+      session.withErrors(valididation.messages()).flashAll();
+      return response.route("faculty.login");
+    }
+    const { username, password } = request.all();
+
+    try {
+      const facultyAuthenticator = auth.authenticator("faculty");
+      await facultyAuthenticator.attempt(username, password);
+      return response.route("faculty.dashboard");
+    } catch (error) {
+      session.flash({ error: error.message.split(":")[1] });
+      return response.route("faculty.login");
+    }
+  }
+
+  /**
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   * @param {Session} ctx.session
+   * @param {Auth} ctx.auth
+   */
+  async logout({ auth, response }) {
+    await auth.logout();
+    return response.route("faculty.login");
+  }
+
+  async courses({ auth, view }) {
+    const mycourses = await auth.user.courses().with("course").fetch();
+    //return mycourses;
+    return view.render("facultyPortal.dashboard", {
+      mycourses: mycourses.toJSON(),
+    });
   }
 }
 

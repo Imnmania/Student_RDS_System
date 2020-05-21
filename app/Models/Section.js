@@ -9,7 +9,17 @@ class Section extends Model {
   }
 
   course() {
-    return this.belongsTo("App/Models/OfferedCourse", "offered_course_id");
+    return this.belongsTo(
+      "App/Models/OfferedCourse",
+      "offered_course_id",
+      "id"
+    );
+  }
+  students() {
+    return this.belongsToMany("App/Models/Student");
+  }
+  grades() {
+    return this.hasMany("App/Models/Grade");
   }
 }
 

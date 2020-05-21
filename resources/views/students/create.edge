@@ -96,9 +96,9 @@
             @endif
           </div>
           <div class="form-group">
-            <input type="text"
+            <input type="number"
               class="form-control form-control-user  {{ hasErrorFor('credit_passed') ? 'is-invalid': '' }}"
-              placeholder="Credit Passed" name="credit_passed" />
+              placeholder="Credit Passed" name="credit_passed" value="0.0" />
             @if(hasErrorFor('credit_passed'))
             <span class="invalid-feedback">
               {{ getErrorFor('credit_passed') }}
@@ -163,7 +163,7 @@
           </div>
           <div class="form-group">
             <input type="number" class="form-control form-control-user {{ hasErrorFor('cgpa') ? 'is-invalid': '' }}"
-              placeholder="CGPA" name="cgpa" />
+              placeholder="CGPA" name="cgpa" value="0.0" />
             @if(hasErrorFor('cgpa'))
             <span class="invalid-feedback">
               {{ getErrorFor('cgpa') }}

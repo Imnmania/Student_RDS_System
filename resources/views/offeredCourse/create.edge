@@ -25,6 +25,17 @@
             </span>
             @endif
           </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Credit hour</label>
+            <input type="number"
+              class="form-control form-control-user  {{ hasErrorFor('credit_hr') ? 'is-invalid': '' }}"
+              placeholder="Credit Hour" name="credit_hr" />
+            @if(hasErrorFor('credit_hr'))
+            <span class="invalid-feedback">
+              {{ getErrorFor('credit_hr') }}
+            </span>
+            @endif
+          </div>
 
           <div class="form-group">
             <label for="formGroupExampleInput">Semester</label>

@@ -44,6 +44,9 @@ Route.post("/student/logout", "StudentController.logout").as("student.logout");
 Route.group(() => {
   Route.on("/").render("student.dashboard").as("student.dashboard");
   Route.on("/profile").render("student.profile").as("student.profile");
+  Route.get("/mycourses", "CourseEnrollController.enrolledCourses").as(
+    "mycourses"
+  );
   Route.resource("enroll", "CourseEnrollController");
 })
   .prefix("student")
@@ -51,12 +54,6 @@ Route.group(() => {
 
 Route.group(() => {
   Route.on("/").render("dashboard").as("dashboard");
-
-  /**
-   * ---------------------------------------------------
-   *      Resource: properties
-   * ---------------------------------------------------
-   */
   Route.resource("students", "StudentController");
   Route.resource("faculty", "FacultyController");
   Route.resource("course", "CourseController");
@@ -72,3 +69,32 @@ Route.group(() => {
 })
   .middleware(["Authenticated"])
   .prefix("admin/offeredCourse/:offeredCourseId");
+
+/**
+ *
+ * Faculty
+ */
+
+Route.on("/faculty/login").render("facultyPortal.login").as("faculty.login");
+Route.post("/faculty/login", "FacultyController.login")
+  .as("faculty.login")
+  .middleware("FacultyGuest");
+Route.post("/faculty/logout", "FacultyController.logout").as("faculty.logout");
+
+Route.group(() => {
+  Route.get("/", "FacultyController.courses").as("faculty.dashboard");
+  Route.on("/profile").render("FacultyPortal.profile").as("faculty.profile");
+  Route.resource("grades", "GradeController");
+  Route.get("/students/:section_id", "SectionController.enrolledStudents").as(
+    "section.student.faculty"
+  );
+  Route.get(
+    "/students/:section_id/assigngrades",
+    "GradeController.assignGrade"
+  ).as("assigngrade");
+  Route.post("/students/:section_id/assigngrades", "GradeController.store").as(
+    "assigngrade.store"
+  );
+})
+  .prefix("faculty")
+  .middleware(["auth:faculty", "FacultyAuthenticated"]);

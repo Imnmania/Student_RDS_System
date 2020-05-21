@@ -16,7 +16,7 @@ class StudentSchema extends Schema {
       table.string("phone_number", 50).notNullable();
       table.string("degree", 250).notNullable();
       table.string("status", 250).notNullable();
-      table.string("credit_passed", 250).notNullable();
+      table.float("credit_passed", 250).notNullable();
       table.string("parent_phone", 250).notNullable();
       table.date("dob", 250).notNullable();
       table.string("sex", 250).notNullable();

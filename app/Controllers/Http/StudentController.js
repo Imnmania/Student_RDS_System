@@ -197,8 +197,6 @@ class StudentController {
   }
 
   /**
-   * Delete a student with id.
-   * DELETE students/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request

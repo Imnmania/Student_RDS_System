@@ -9,6 +9,7 @@ class OfferedCoursesSchema extends Schema {
       table.increments();
       table.string("course_id", 250).notNullable();
       table.string("semester", 250).notNullable();
+      table.float("credit_hr");
       table.timestamps();
     });
   }

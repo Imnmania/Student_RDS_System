@@ -8,6 +8,7 @@
     <tr>
       <th>#Id</th>
       <th>Course Id</th>
+      <th>Course Hour</th>
       <th>Semester</th>
       <th>Actions</th>
     </tr>
@@ -17,6 +18,7 @@
     <tr>
       <td>{{courses.id}}</td>
       <td>{{courses.course_id}}</td>
+      <td>{{courses.credit_hr}}</td>
       <td>{{courses.semester}}</td>
       <td><a href="{{route('offeredCourse.show',{id:courses.id})}}" class="btn btn-success btn-sm">View</a>
         <a href="{{route('offeredCourse.edit',{id:courses.id})}}" class="btn btn-primary btn-sm">Edit</a>

@@ -112,6 +112,16 @@ class SectionController {
    * @param {Response} ctx.response
    */
   async destroy({ params, request, response }) {}
+
+  async enrolledStudents({ params, view }) {
+    const section = await Section.query().where("id", params.section_id).last();
+
+    const students = await section.students().fetch();
+
+    return view.render("facultyPortal.enrollStudents", {
+      students: students.toJSON(),
+    });
+  }
 }
 
 module.exports = SectionController;

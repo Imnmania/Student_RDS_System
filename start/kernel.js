@@ -44,6 +44,8 @@ const namedMiddleware = {
   Guest: "App/Middleware/Guest",
   StudentAuthenticated: "App/Middleware/StudentAuthenticated",
   StudentGuest: "App/Middleware/StudentGuest",
+  FacultyAuthenticated: "App/Middleware/FacultyAuthenticated",
+  FacultyGuest: "App/Middleware/FacultyGuest",
 };
 
 /*

@@ -1,0 +1,41 @@
+@layout('layouts.facultyapp')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="h3 mb-1 text-gray-800">Courses of {{auth.user.name}}</h1>
+    @each(course in mycourses)
+    <div class="card shadow my-4 mx-auto w-40">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Course Name</b>
+            <span>{{course.course.course_id}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Section</b>
+            <span>{{course.name}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Room No.</b>
+            <span>{{course.room_no}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Time</b>
+            <span>{{course.time}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Semester</b>
+            <span>{{course.course.semester}}</span>
+          </li>
+        </ul>
+        <a class="btn btn-success btn-sm" href="{{route('section.student.faculty',{section_id:course.id})}}">All
+          Students</a>
+        <a class="btn btn-success btn-sm" href="{{route('assigngrade',{section_id:course.id})}}"> Assign Grade</a>
+      </div>
+    </div>
+    @endeach
+  </div>
+</div>
+
+@endsection

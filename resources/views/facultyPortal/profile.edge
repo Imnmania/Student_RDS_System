@@ -1,0 +1,89 @@
+@layout('layouts.facultyapp')
+
+@section('body')
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="h3 mb-1 text-gray-800">Details of {{auth.user.name}}</h1>
+
+    <div class="card shadow my-4 mx-auto w-40">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Name</b>
+            <span>{{auth.user.name}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Email</b>
+            <span>{{auth.user.email}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Username</b>
+            <span>{{auth.user.username}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Credit Passed</b>
+            <span>{{auth.user.credit_passed}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Father Name</b>
+            <span>{{auth.user.father_name}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Mother Name</b>
+            <span>{{auth.user.mother_name}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Address</b>
+            <span>{{auth.user.address}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Phone Number</b>
+            <span>{{auth.user.phone_number}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Degree</b>
+            <span>{{auth.user.degree}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Status</b>
+            <span>{{auth.user.status}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Credit Passed</b>
+            <span>{{auth.user.credit_passed}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Parent Phone Number</b>
+            <span>{{auth.user.parent_phone}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Date of Birth</b>
+            <span>{{auth.user.dob}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Sex</b>
+            <span>{{auth.user.sex}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Marital Status</b>
+            <span>{{auth.user.marital_status}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Department ID</b>
+            <span>{{auth.user.dept_id}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>CGPA</b>
+            <span>{{auth.user.cgpa}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <b>Major</b>
+            <span>{{auth.user.major}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection

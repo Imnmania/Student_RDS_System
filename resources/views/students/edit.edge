@@ -116,7 +116,7 @@
           </div>
           <div class="form-group">
             <label for="formGroupExampleInput">Credit Passed</label>
-            <input type="text"
+            <input type="number"
               class="form-control form-control-user  {{ hasErrorFor('credit_passed') ? 'is-invalid': '' }}"
               placeholder="Credit Passed" name="credit_passed" value="{{student.credit_passed}}" />
             @if(hasErrorFor('credit_passed'))
