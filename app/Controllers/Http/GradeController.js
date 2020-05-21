@@ -82,6 +82,23 @@ class GradeController {
           student.credit_passed = parseFloat(
             student.credit_passed + sect.course.credit_hr
           );
+
+          const student_grades = await Grade.query()
+            .where("student_id", g.student_id)
+            .with("sections")
+            .with("sections.course")
+            .fetch();
+          let sumOfCredithrAndGrades = 0;
+
+          console.log(JSON.stringify(student_grades.toJSON(), undefined, 4));
+          student_grades.toJSON().forEach((student_grade) => {
+            sumOfCredithrAndGrades +=
+              student_grade.grade * student_grade.sections.course.credit_hr;
+          });
+          const cgpa = +parseFloat(
+            sumOfCredithrAndGrades / student.credit_passed
+          ).toFixed(2);
+          student.cgpa = cgpa;
           await student.save();
         }
       });
