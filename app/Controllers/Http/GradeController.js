@@ -15,36 +15,6 @@ const Course = use("App/Models/Course");
  * Resourceful controller for interacting with grades
  */
 class GradeController {
-  /**
-   * Show a list of all grades.
-   * GET grades
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index({ request, response, view }) {}
-
-  /**
-   * Render a form to be used for creating a new grade.
-   * GET grades/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create({ request, response, view }) {}
-
-  /**
-   * Create/save a new grade.
-   * POST grades
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async store({ request, response, params, session }) {
     const student = request.all().student;
     let error = false;
@@ -106,48 +76,6 @@ class GradeController {
     session.flash({ msg: "Graded successfully!!" });
     return response.route("faculty.dashboard");
   }
-
-  /**
-   * Display a single grade.
-   * GET grades/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show({ params, request, response, view }) {}
-
-  /**
-   * Render a form to update an existing grade.
-   * GET grades/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit({ params, request, response, view }) {}
-
-  /**
-   * Update grade details.
-   * PUT or PATCH grades/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update({ params, request, response }) {}
-
-  /**
-   * Delete a grade with id.
-   * DELETE grades/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy({ params, request, response }) {}
 
   async assignGrade({ auth, view, params }) {
     const section = await Section.query().where("id", params.section_id).last();
